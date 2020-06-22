@@ -84,6 +84,9 @@
     "egulias/email-validator": {
         "version": "2.1.17"
     },
+    "knplabs/knp-time-bundle": {
+        "version": "v1.11.0"
+    },
     "laminas/laminas-code": {
         "version": "3.4.1"
     },
@@ -438,6 +441,9 @@
     "symfony/string": {
         "version": "v5.1.1"
     },
+    "symfony/templating": {
+        "version": "v5.1.2"
+    },
     "symfony/test-pack": {
         "version": "v1.0.6"
     },
@@ -520,6 +526,9 @@
         "version": "4.3.0"
     },
     "twig/extra-bundle": {
+        "version": "v3.0.3"
+    },
+    "twig/string-extra": {
         "version": "v3.0.3"
     },
     "twig/twig": {
