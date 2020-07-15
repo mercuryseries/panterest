@@ -84,6 +84,9 @@
     "egulias/email-validator": {
         "version": "2.1.17"
     },
+    "imagine/imagine": {
+        "version": "1.2.3"
+    },
     "jms/metadata": {
         "version": "2.3.0"
     },
@@ -98,6 +101,19 @@
     },
     "laminas/laminas-zendframework-bridge": {
         "version": "1.0.4"
+    },
+    "liip/imagine-bundle": {
+        "version": "1.8",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "1.8",
+            "ref": "5a5bdc2d0e2533ed6935d5ae562f2b318a8fc1ee"
+        },
+        "files": [
+            "config/packages/liip_imagine.yaml",
+            "config/routes/liip_imagine.yaml"
+        ]
     },
     "monolog/monolog": {
         "version": "2.1.0"
