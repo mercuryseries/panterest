@@ -15,7 +15,7 @@ trait Timestampable
      */
     private $updatedAt;
 
-        public function getCreatedAt(): ?\DateTimeInterface
+    public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->createdAt;
     }
