@@ -27,7 +27,9 @@
                 }) }}
                 {{ form_row(registrationForm.agreeTerms) }}
 
-                <button type="submit" class="btn btn-primary btn-lg btn-block">Register</button>
+                <button type="submit" class="btn btn-primary btn-lg btn-block" formnovalidate>
+                    Register
+                </button>
                
                 <p class="mt-5 mb-3 text-center text-muted">
                     Already have an account? <a href="{{ path('app_login') }}">Log in</a>
