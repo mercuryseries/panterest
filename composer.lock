@@ -7159,7 +7159,7 @@
         },
         {
             "name": "symfony/twig-pack",
-            "version": "v1.0.2",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/twig-pack.git",
@@ -7184,7 +7184,7 @@
             "description": "A Twig pack for Symfony projects",
             "support": {
                 "issues": "https://github.com/symfony/twig-pack/issues",
-                "source": "https://github.com/symfony/twig-pack/tree/v1.0.2"
+                "source": "https://github.com/symfony/twig-pack/tree/v1.0.1"
             },
             "funding": [
                 {
