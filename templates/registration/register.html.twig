@@ -5,10 +5,6 @@
 {% block body %}
     <div class="row">
         <div class="col-md-6 mx-auto">
-            {% for flashError in app.flashes('verify_email_error') %}
-                <div class="alert alert-error rounded mb-3" role="alert">{{ flashError }}</div>
-            {% endfor %}
-
             <h1 class="my-5 text-center">Create an account</h1>
 
             {{ form_start(registrationForm) }}
