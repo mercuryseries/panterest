@@ -11,10 +11,14 @@
 
             <p class="mt-5 lead">{{ app.user.email }}</p>
 
+            <hr>
+
             <h2>{{ app.user.fullName }}</h2>
+            <p><small>🕗 Account created on {{ app.user.createdAt|date('d/m/Y') }}</small></p>
 
             <p>
-                <a href="">Edit Account</a> | <a href="">Change Password</a>
+                <a href="{{ path('app_account_edit') }}">Edit Account</a> | 
+                <a href="#">Change Password</a>
             </p>
         </div>
     </div>
