@@ -211,6 +211,11 @@ class User implements UserInterface
         return $this->getFirstName() . ' ' . $this->getLastName();
     }
 
+    public function gravatar(?int $size = 100)
+    {
+        return sprintf('https://www.gravatar.com/avatar/%s/?s=%d', md5(strtolower(trim($this->getEmail()))), $size);
+    }
+
     public function isVerified(): bool
     {
         return $this->isVerified;
