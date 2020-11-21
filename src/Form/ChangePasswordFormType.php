@@ -32,7 +32,7 @@ class ChangePasswordFormType extends AbstractType
                     'label' => 'New password',
                 ],
                 'second_options' => [
-                    'label' => 'Confirm New Password',
+                    'label' => 'Confirm Your New Password',
                 ],
                 'invalid_message' => 'The password fields must match.',
                 // Instead of being set onto the object directly,
