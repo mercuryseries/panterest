@@ -81,6 +81,9 @@
     "egulias/email-validator": {
         "version": "2.1.17"
     },
+    "friendsofphp/proxy-manager-lts": {
+        "version": "v1.0.2"
+    },
     "imagine/imagine": {
         "version": "1.2.3"
     },
@@ -120,9 +123,6 @@
     },
     "ocramius/package-versions": {
         "version": "1.8.0"
-    },
-    "ocramius/proxy-manager": {
-        "version": "2.8.0"
     },
     "php": {
         "version": "7.4"
@@ -402,6 +402,9 @@
     "symfony/property-info": {
         "version": "v5.1.1"
     },
+    "symfony/proxy-manager-bridge": {
+        "version": "v5.1.10"
+    },
     "symfony/routing": {
         "version": "5.1",
         "recipe": {
@@ -593,9 +596,6 @@
         "files": [
             "config/packages/vich_uploader.yaml"
         ]
-    },
-    "webimpress/safe-writer": {
-        "version": "2.0.1"
     },
     "webmozart/assert": {
         "version": "1.8.0"
