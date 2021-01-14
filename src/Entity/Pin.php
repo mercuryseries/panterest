@@ -9,56 +9,43 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
-/**
- * @ORM\Entity(repositoryClass=PinRepository::class)
- * @ORM\Table(name="pins")
- * @Vich\Uploadable
- * @ORM\HasLifecycleCallbacks
- */
+#[ORM\Entity(repositoryClass: PinRepository::class)]
+#[ORM\Table(name: "pins")]
+#[Vich\Uploadable]
+#[ORM\HasLifecycleCallbacks]
 class Pin
 {
     use Timestampable;
 
-    /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: "integer")]
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank
-     * @Assert\Length(min=3)
-     */
+    #[ORM\Column(type: "string", length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 3)]
     private $title;
 
-    /**
-     * @ORM\Column(type="text")
-     * @Assert\NotBlank
-     * @Assert\Length(min=10)
-     */
+    #[ORM\Column(type: "text")]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 10)]
     private $description;
 
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      * 
-     * @Vich\UploadableField(mapping="pin_image", fileNameProperty="imageName")
-     * @Assert\Image(maxSize="8M")
-     * 
      * @var File|null
      */
+    #[Vich\UploadableField(mapping: "pin_image", fileNameProperty: "imageName")]
+    #[Assert\Image(maxSize: "8M")]
     private $imageFile;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+    #[ORM\Column(type: "string", length: 255, nullable: true)]
     private $imageName;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="pins")
-     * @ORM\JoinColumn(nullable=false)
-     */
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: "pins")]
+    #[ORM\JoinColumn(nullable: false)]
     private $user;
 
     public function getId(): ?int

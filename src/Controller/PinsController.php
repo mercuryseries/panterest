@@ -14,9 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class PinsController extends AbstractController
 {
-    /**
-     * @Route("/", name="app_home", methods="GET")
-     */
+    #[Route("/", name: "app_home", methods: ["GET"])]
     public function index(PinRepository $pinRepository): Response
     {
         $pins = $pinRepository->findBy([], ['createdAt' => 'DESC']);
@@ -24,9 +22,7 @@ class PinsController extends AbstractController
         return $this->render('pins/index.html.twig', compact('pins'));
     }
     
-    /**
-     * @Route("/pins/create", name="app_pins_create", methods={"GET", "POST"})
-     */
+    #[Route("/pins/create", name: "app_pins_create", methods: ["GET", "POST"])]
     public function create(Request $request, EntityManagerInterface $em, UserRepository $userRepo): Response
     {
         $pin = new Pin;
@@ -50,17 +46,13 @@ class PinsController extends AbstractController
         ]);
     }
     
-    /**
-     * @Route("/pins/{id<[0-9]+>}", name="app_pins_show", methods="GET")
-     */
+    #[Route("/pins/{id<[0-9]+>}", name: "app_pins_show", methods: ["GET"])]
     public function show(Pin $pin): Response
     {
         return $this->render('pins/show.html.twig', compact('pin'));
     }
     
-    /**
-     * @Route("/pins/{id<[0-9]+>}/edit", name="app_pins_edit", methods={"GET", "PUT"})
-     */
+    #[Route("/pins/{id<[0-9]+>}/edit", name: "app_pins_edit", methods: ["GET", "PUT"])]
     public function edit(Request $request, Pin $pin, EntityManagerInterface $em): Response
     {
         $form = $this->createForm(PinType::class, $pin, [
@@ -83,9 +75,7 @@ class PinsController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/pins/{id<[0-9]+>}", name="app_pins_delete", methods={"DELETE"})
-     */
+    #[Route("/pins/{id<[0-9]+>}", name: "app_pins_delete", methods: ["DELETE"])]
     public function delete(Request $request, Pin $pin, EntityManagerInterface $em): Response
     {
         if ($this->isCsrfTokenValid('pin_deletion_' . $pin->getId(), $request->request->get('csrf_token'))) {
