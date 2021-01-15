@@ -11,45 +11,61 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
-#[ORM\Entity(repositoryClass: UserRepository::class)]
-#[ORM\Table(name: "users")]
-#[ORM\HasLifecycleCallbacks]
-#[UniqueEntity(fields: "email", message: "There is already an account with this email")]
+/**
+ * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @ORM\Table(name="users")
+ * @ORM\HasLifecycleCallbacks
+ * @UniqueEntity(fields="email", message="There is already an account with this email")
+ */
 class User implements UserInterface
 {
     use Timestampable;
 
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column(type: "integer")]
+    /**
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
+     */
     private $id;
 
-    #[ORM\Column(type: "string", length: 255)]
-    #[Assert\NotBlank(message: "Please enter your first name")]
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Please enter your first name")
+     */
     private $firstName;
 
-    #[ORM\Column(type: "string", length: 255)]
-    #[Assert\NotBlank(message: "Please enter your last name")]
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Please enter your last name")
+     */
     private $lastName;
 
-    #[ORM\Column(type: "string", length: 255, unique: true)]
-    #[Assert\NotBlank(message: "Please enter your email address")]
-    #[Assert\Email(message: "Please enter a valid email address")]
+    /**
+     * @ORM\Column(type="string", length=255, unique=true)
+     * @Assert\NotBlank(message="Please enter your email address")
+     * @Assert\Email(message="Please enter a valid email address")
+     */
     private $email;
 
-    #[ORM\Column(type: "json")]
+    /**
+     * @ORM\Column(type="json")
+     */
     private $roles = [];
 
     /**
      * @var string The hashed password
+     * @ORM\Column(type="string")
      */
-    #[ORM\Column(type: "string")]
     private $password;
 
-    #[ORM\OneToMany(targetEntity: Pin::class, mappedBy: "user", orphanRemoval: true)]
+    /**
+     * @ORM\OneToMany(targetEntity=Pin::class, mappedBy="user", orphanRemoval=true)
+     */
     private $pins;
 
-    #[ORM\Column(type: "boolean")]
+    /**
+     * @ORM\Column(type="boolean")
+     */
     private $isVerified = false;
 
     public function __construct()
@@ -195,7 +211,7 @@ class User implements UserInterface
         return $this->getFirstName() . ' ' . $this->getLastName();
     }
 
-    public function gravatar(?int $size = 100)
+    public function getGravatarUrl(?int $size = 100)
     {
         return sprintf('https://www.gravatar.com/avatar/%s?s=%d', md5(strtolower(trim($this->getEmail()))), $size);
     }
