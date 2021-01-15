@@ -10,6 +10,8 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class PinsController extends AbstractController
@@ -22,7 +24,10 @@ class PinsController extends AbstractController
         return $this->render('pins/index.html.twig', compact('pins'));
     }
     
-    #[Route("/pins/create", name: "app_pins_create", methods: ["GET", "POST"])]
+    /**
+     * @Route("/pins/create", name="app_pins_create", methods={"GET", "POST"})
+     * @IsGranted("PIN_CREATE")
+     */
     public function create(Request $request, EntityManagerInterface $em, UserRepository $userRepo): Response
     {
         $pin = new Pin;
@@ -52,7 +57,10 @@ class PinsController extends AbstractController
         return $this->render('pins/show.html.twig', compact('pin'));
     }
     
-    #[Route("/pins/{id<[0-9]+>}/edit", name: "app_pins_edit", methods: ["GET", "PATCH"])]
+    /**
+     * @Route("/pins/{id<[0-9]+>}/edit", name="app_pins_edit", methods={"GET", "PATCH"})
+     * @IsGranted("PIN_MANAGE", subject="pin")
+     */
     public function edit(Request $request, Pin $pin, EntityManagerInterface $em): Response
     {
         $form = $this->createForm(PinType::class, $pin, [
@@ -75,9 +83,13 @@ class PinsController extends AbstractController
         ]);
     }
 
-    #[Route("/pins/{id<[0-9]+>}", name: "app_pins_delete", methods: ["DELETE"])]
+    /**
+     * @Route("/pins/{id<[0-9]+>}", name="app_pins_delete", methods={"DELETE"})
+     */
     public function delete(Request $request, Pin $pin, EntityManagerInterface $em): Response
     {
+        $this->denyAccessUnlessGranted('PIN_MANAGE', $pin);
+
         if ($this->isCsrfTokenValid('pin_deletion_' . $pin->getId(), $request->request->get('csrf_token'))) {
             $em->remove($pin);
             $em->flush();
