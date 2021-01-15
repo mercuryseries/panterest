@@ -2,8 +2,8 @@
 
 namespace App\Twig;
 
-use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
+use Twig\Extension\AbstractExtension;
 
 class AppExtension extends AbstractExtension
 {
